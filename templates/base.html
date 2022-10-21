@@ -12,7 +12,8 @@
   </head>
 
   <body>
-    <div class="container">
+    <div class="container position-relative">
+      <a href="{% url 'reviews:index' %}" class="position-absolute top-0 end-0 btn btn-outline-secondary">메인 페이지로</a>
       {% block body %}{% endblock %}
     </div>
     <!-- JavaScript Bundle with Popper -->

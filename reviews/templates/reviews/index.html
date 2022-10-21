@@ -1,24 +1,36 @@
 {% extends 'base.html' %}
 
 {% block body %}
-  <h1>글 목록</h1>
+  <div class="text-center my-5 py-5">
+    <h1>글 목록</h1>
+    <div class="text-end my-3">
+      {% if request.user.is_authenticated %}
+        <a href="{% url 'accounts:logout' %}" class="btn btn-danger">로그아웃</a>
+        <a href="{% url 'reviews:create' %}" class="btn btn-primary">글 작성</a>
+      {% else %}
+        <a href="{% url 'accounts:login' %}" class="btn btn-primary">로그인</a>
+      {% endif %}
+    </div>
+  </div>
+
   <table class="table">
     <thead>
       <tr>
-        <th scope="col">title</th>
-        <th scope="col">movie_name</th>
-        <th scope="col">grade</th>
+        <th scope="col">글 제목</th>
+        <th scope="col">영화</th>
+        <th scope="col">평점</th>
       </tr>
     </thead>
     <tbody>
       {% for review in reviews %}
         <tr>
-          <th>{{ review.title }}</th>
-          <th>{{ review.movie_name }}</th>
-          <th>{{ review.grade }}</th>
+          <th>
+            <a href="{% url 'reviews:detail' review.pk %}">{{ review.title }}</a>
+          </th>
+          <td>{{ review.movie_name }}</td>
+          <td>{{ review.grade }}</td>
         </tr>
       {% endfor %}
     </tbody>
   </table>
-
 {% endblock body %}

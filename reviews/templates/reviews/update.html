@@ -2,11 +2,13 @@
 {% load django_bootstrap5 %}
 
 {% block body %}
-  <h1>글 수정</h1>
+  <div class="text-center my-5 py-5">
+    <h1>글 수정</h1>
+  </div>
 
   <form action="" method="POST">
     {% csrf_token %}
     {% bootstrap_form form %}
-    <button class="btn btn-primary" type="submit">수정</button>
+    <button class="btn btn-primary float-end" type="submit">수정</button>
   </form>
 {% endblock body %}
