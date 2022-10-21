@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from .forms import ReviewForm, CommentForm
-from .models import Review
+from .models import Review, Comment
 from django.contrib.auth.decorators import login_required
 
 # Create your views here.
@@ -82,3 +82,9 @@ def comments(request, pk):
         comment.user = request.user
         comment.save()
     return redirect('reviews:detail', review.pk)
+
+
+def comments_del(request, review_pk, comment_pk):
+    comment = Comment.objects.get(pk=comment_pk)
+    comment.delete()
+    return redirect('reviews:detail', review_pk)

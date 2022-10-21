@@ -7,7 +7,7 @@
   <p>{{ reivew.content }}</p>
   <p>{{ reivew.grade }}</p>
 
-  {% if request.user == article.user %}
+  {% if request.user == review.user %}
     <p>
       <a href="{% url 'review:update' review.pk %}">수정</a>
       <a href="{% url 'review:delete' review.pk %}">삭제</a>
@@ -17,8 +17,10 @@
   <h3>댓글</h3>
   {% for comment in comments %}
     <p>{{ comment.content }}</p>
-    <a href="{% url 'reivews:comment_delete' reivew.pk comment.pk %}" class="btn btn-danger btn-sm">삭제</a>
-    <hr>
+    {% if user == comment.user %}
+      <a href="{% url 'reivews:comment_delete' reivew.pk comment.pk %}" class="btn btn-danger btn-sm">삭제</a>
+      <hr>
+    {% endif %}
     {% empty %}
     <p>댓글이 없습니다.</p>
   {% endfor %}
