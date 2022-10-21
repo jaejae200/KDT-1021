@@ -63,6 +63,13 @@ def update(request, pk):
     
     else:
         return redirect('reviews:detail', review.pk)
-    
+
+def delete(request, pk):
+    review = Review.objects.get(pk=pk)
+    if request.user == review.user:
+        review.delete()
+        return redirect('reivews:index')
+    else:
+        return redirect('reviews:detail', review.pk)
 
 
