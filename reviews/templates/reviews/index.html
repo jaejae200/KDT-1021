@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block body %}
+  <h1>글 목록</h1>
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">title</th>
+        <th scope="col">movie_name</th>
+        <th scope="col">grade</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for review in reviews %}
+        <tr>
+          <th>{{ review.title }}</th>
+          <th>{{ review.movie_name }}</th>
+          <th>{{ review.grade }}</th>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+{% endblock body %}
