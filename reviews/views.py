@@ -82,6 +82,3 @@ def comments(request, pk):
         comment.user = request.user
         comment.save()
     return redirect('reviews:detail', review.pk)
-    
-
-
